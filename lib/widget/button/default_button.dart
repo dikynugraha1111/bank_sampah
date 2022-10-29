@@ -3,8 +3,8 @@ import 'package:bank_sampah/constant/app_text.dart';
 import 'package:bank_sampah/widget/misc/default_circular_progress.dart';
 import 'package:flutter/material.dart';
 
-class ButtonDefault extends StatelessWidget {
-  const ButtonDefault({
+class DefaultButton extends StatelessWidget {
+  const DefaultButton({
     Key? key,
     required this.text,
     required this.onPressed,

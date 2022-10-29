@@ -32,7 +32,7 @@ class OnboardActionButton extends StatelessWidget {
             scrollIndex,
           ),
           scrollIndex == (contentLength - 1)
-              ? ButtonDefault(
+              ? DefaultButton(
                   text: 'Masuk',
                   onPressed: onPressedFinish,
                   isBlockSize: true,
@@ -41,15 +41,16 @@ class OnboardActionButton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                        onTap: onPressedSkip,
-                        child: Text(
-                          "Lewati",
-                          style: AppText.text14.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.lightGrey,
-                          ),
-                        )),
-                    ButtonDefault(
+                      onTap: onPressedSkip,
+                      child: Text(
+                        "Lewati",
+                        style: AppText.text14.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.lightGrey,
+                        ),
+                      ),
+                    ),
+                    DefaultButton(
                       text: "Selanjutnya",
                       onPressed: onPressedNext,
                       isBlockSize: false,

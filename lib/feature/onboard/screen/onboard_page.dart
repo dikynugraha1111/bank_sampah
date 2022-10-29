@@ -1,3 +1,4 @@
+import 'package:bank_sampah/feature/login/screen/login_page.dart';
 import 'package:bank_sampah/feature/onboard/domain/onboard_item.dart';
 import 'package:bank_sampah/feature/onboard/screen/section/onboard_action_button.dart';
 import 'package:bank_sampah/feature/onboard/screen/section/onboard_content.dart';
@@ -69,7 +70,7 @@ class _OnboardPageState extends State<OnboardPage> {
                 },
                 () {
                   // Going to Another Page
-                  // Navigator.of(context).pushReplacement();
+                  Navigator.of(context).pushReplacement(LoginPage.route());
                 },
               ),
             ],
