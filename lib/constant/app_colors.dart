@@ -9,4 +9,5 @@ class AppColors {
   static const purpleNavy = Color(0xFF434D7E);
   static const spanishYellow = Color(0xFFFBB215);
   static const lightGrey = Color(0xFFD3D3D3);
+  static const sonicSilver = Color(0xFF7A7971);
 }
