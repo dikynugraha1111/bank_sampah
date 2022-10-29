@@ -94,11 +94,16 @@ class DefaultTextField extends StatelessWidget {
       autovalidateMode: needAutoValidate ? AutovalidateMode.always : null,
       decoration: InputDecoration(
         focusColor: AppColors.greenSheen,
-        fillColor: AppColors.lightGrey,
         filled: false,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.0),
-          borderSide: const BorderSide(color: AppColors.lightGrey),
+          borderSide: const BorderSide(color: AppColors.sonicSilver),
+        ),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: AppColors.outerSpace,
+          ),
+          borderRadius: BorderRadius.circular(16.0),
         ),
         hintText: hintText,
         hintStyle: AppText.text12.copyWith(
@@ -112,12 +117,6 @@ class DefaultTextField extends StatelessWidget {
         contentPadding: const EdgeInsets.all(16),
         suffixIcon: suffixWidget,
         suffixIconConstraints: suffixConstraints,
-        border: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.white,
-          ),
-          borderRadius: BorderRadius.circular(16.0),
-        ),
       ),
       maxLength: maxLength,
       validator: validator,
