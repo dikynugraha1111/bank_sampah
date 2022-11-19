@@ -1,5 +1,6 @@
 import 'package:bank_sampah/constant/app_colors.dart';
 import 'package:bank_sampah/constant/app_text.dart';
+import 'package:bank_sampah/feature/dashboard/screen/dashboard_page.dart';
 import 'package:bank_sampah/widget/button/default_button.dart';
 import 'package:bank_sampah/widget/field/default_text_field.dart';
 import 'package:flutter/material.dart';
@@ -156,6 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                   if (!_formKey.currentState!.validate()) {
                     return;
                   }
+                  Navigator.of(context).pushReplacement(DashboardPage.route());
                 },
               ),
               const SizedBox(height: 16.0),

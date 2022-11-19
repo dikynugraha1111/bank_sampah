@@ -10,4 +10,5 @@ class AppColors {
   static const spanishYellow = Color(0xFFFBB215);
   static const lightGrey = Color(0xFFD3D3D3);
   static const sonicSilver = Color(0xFF7A7971);
+  static const nickel = Color(0xFF78736D);
 }

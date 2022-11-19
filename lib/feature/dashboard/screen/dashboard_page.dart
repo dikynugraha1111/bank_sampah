@@ -1,25 +1,32 @@
 import 'package:bank_sampah/constant/app_colors.dart';
 import 'package:bank_sampah/constant/app_text.dart';
 import 'package:bank_sampah/feature/dashboard/screen/section/bottom_navigation.dart';
+import 'package:bank_sampah/feature/home/screen/home_page.dart';
+import 'package:bank_sampah/feature/penjualan/view/penjualan_page.dart';
+import 'package:bank_sampah/feature/profile/view/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
 
+  static Route route() =>
+      MaterialPageRoute(builder: (_) => const DashboardPage());
+
   @override
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  DateTime preBackpress = DateTime.now();
+  final PageStorageBucket bucket = PageStorageBucket();
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    DateTime preBackpress = DateTime.now();
-    final PageStorageBucket bucket = PageStorageBucket();
-    int currentIndex = 0;
-
     final List<Widget> currentScrenList = [
-      //Note List of thw widget
+      const HomePage(),
+      const PenjualanPage(),
+      const ProfilePage(),
     ];
 
     return WillPopScope(

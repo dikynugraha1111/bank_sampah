@@ -1,7 +1,7 @@
 import 'package:bank_sampah/feature/dashboard/screen/section/navigation_item.dart';
 import 'package:flutter/material.dart';
 
-class DashboardBottomNavigationBar extends StatelessWidget {
+class DashboardBottomNavigationBar extends StatefulWidget {
   const DashboardBottomNavigationBar(
     this.currentIndex,
     this.onTap, {
@@ -11,6 +11,13 @@ class DashboardBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final void Function(int index) onTap;
 
+  @override
+  State<DashboardBottomNavigationBar> createState() =>
+      _DashboardBottomNavigationBarState();
+}
+
+class _DashboardBottomNavigationBarState
+    extends State<DashboardBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -22,36 +29,28 @@ class DashboardBottomNavigationBar extends StatelessWidget {
           children: [
             NavigationItem(
               () {
-                onTap(0);
+                widget.onTap(0);
               },
-              currentIndex == 0,
+              widget.currentIndex == 0,
               "assets/icons/home.svg",
               "Home",
             ),
             NavigationItem(
               () {
-                onTap(1);
+                widget.onTap(1);
               },
-              currentIndex == 1,
-              "assets/icons/transaction.svg",
-              "Video",
+              widget.currentIndex == 1,
+              "assets/icons/record.svg",
+              "Penjualan",
             ),
             NavigationItem(
               () {
-                onTap(2);
+                widget.onTap(2);
               },
-              currentIndex == 2,
-              "assets/icons/transaction.svg",
-              "Qur'an",
-            ),
-            NavigationItem(
-              () {
-                onTap(3);
-              },
-              currentIndex == 3,
-              "assets/icons/transaction.svg",
+              widget.currentIndex == 2,
+              "assets/icons/profile.svg",
               "Profile",
-            )
+            ),
           ],
         ),
       ),

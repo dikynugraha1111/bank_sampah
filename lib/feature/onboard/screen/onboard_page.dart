@@ -69,7 +69,6 @@ class _OnboardPageState extends State<OnboardPage> {
                   });
                 },
                 () {
-                  // Going to Another Page
                   Navigator.of(context).pushReplacement(LoginPage.route());
                 },
               ),
