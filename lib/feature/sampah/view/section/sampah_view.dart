@@ -1,10 +1,13 @@
 import 'package:bank_sampah/constant/app_colors.dart';
 import 'package:bank_sampah/constant/app_text.dart';
+import 'package:bank_sampah/feature/sampah/logic/sampah/sampah_state.dart';
 import 'package:bank_sampah/feature/sampah/view/section/sampah_banner.dart';
 import 'package:flutter/material.dart';
 
 class SampahView extends StatefulWidget {
-  const SampahView({Key? key}) : super(key: key);
+  const SampahView(this.state, {Key? key}) : super(key: key);
+
+  final SampahState state;
 
   @override
   State<SampahView> createState() => _SampahViewState();
@@ -13,6 +16,7 @@ class SampahView extends StatefulWidget {
 class _SampahViewState extends State<SampahView> {
   @override
   Widget build(BuildContext context) {
+    final item = widget.state.bankSampahResponse?.showBankItem;
     Widget sampahItemContainer(
       String title,
       String description,
@@ -98,11 +102,11 @@ class _SampahViewState extends State<SampahView> {
         );
 
     List<Widget> generateSampahContainer() => List.generate(
-          5,
+          item?.length ?? 0,
           (index) => sampahItemContainer(
-            "Sampah Bottol",
-            "Contoh Deskripsi Disini, Bisa disampaikan terkait jenis sampah ini dan harga per Kg atau ketentuan khusus lainnya. ",
-            3000,
+            item?[index].nama ?? "Unknown Name",
+            item?[index].deskripsi ?? "Unknown Description",
+            int.parse(item?[index].hargaKg ?? "0"),
           ),
         );
 

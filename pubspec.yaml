@@ -40,6 +40,9 @@ dependencies:
   intl: ^0.17.0
   http: ^0.13.4
   lottie: ^1.4.2
+  equatable: ^2.0.5
+  api_exception: ^0.0.3
+  url_launcher: ^6.1.7
 
 dev_dependencies:
   flutter_test:

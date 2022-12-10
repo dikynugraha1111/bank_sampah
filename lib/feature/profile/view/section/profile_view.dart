@@ -1,10 +1,13 @@
 import 'package:bank_sampah/constant/app_colors.dart';
 import 'package:bank_sampah/constant/app_text.dart';
-import 'package:bank_sampah/feature/dashboard/screen/dashboard_page.dart';
+import 'package:bank_sampah/feature/help/view/help_page.dart';
+import 'package:bank_sampah/feature/login/logic/cubit/login_cubit.dart';
 import 'package:bank_sampah/feature/onboard/screen/onboard_page.dart';
 import 'package:bank_sampah/feature/profile/view/section/profile_banner.dart';
+import 'package:bank_sampah/feature/profile/view/user_profile/user_profile_page.dart';
 import 'package:bank_sampah/widget/button/default_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView(this.isFromDashboard, {Key? key}) : super(key: key);
@@ -31,44 +34,48 @@ class _ProfileViewState extends State<ProfileView> {
 
     Widget profileSubMenuContainer(
       IconData icon,
-      String title,
-    ) =>
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 24.0),
-          height: 42.0,
-          child: Column(
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(
-                    icon,
-                    color: AppColors.sonicSilver,
-                    size: 24.0,
-                  ),
-                  const SizedBox(width: 16.0),
-                  Expanded(
-                    child: Text(
-                      title,
-                      style: AppText.text12.copyWith(
-                        color: AppColors.sonicSilver,
-                        fontWeight: FontWeight.w600,
+      String title, {
+      VoidCallback? onTap,
+    }) =>
+        InkWell(
+          onTap: onTap,
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 24.0),
+            height: 42.0,
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      icon,
+                      color: AppColors.sonicSilver,
+                      size: 24.0,
+                    ),
+                    const SizedBox(width: 16.0),
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: AppText.text12.copyWith(
+                          color: AppColors.sonicSilver,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                  ),
-                  const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: AppColors.sonicSilver,
-                    size: 24.0,
-                  )
-                ],
-              ),
-              const Expanded(child: SizedBox()),
-              const Divider(
-                color: AppColors.sonicSilver,
-                height: 1.0,
-              )
-            ],
+                    const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: AppColors.sonicSilver,
+                      size: 24.0,
+                    )
+                  ],
+                ),
+                const Expanded(child: SizedBox()),
+                const Divider(
+                  color: AppColors.sonicSilver,
+                  height: 1.0,
+                )
+              ],
+            ),
           ),
         );
 
@@ -78,11 +85,23 @@ class _ProfileViewState extends State<ProfileView> {
         const SizedBox(height: 30.0),
         profileSibMenuTitle("Pengaturan"),
         const SizedBox(height: 18.0),
-        profileSubMenuContainer(Icons.person, "Data Diri"),
+        profileSubMenuContainer(
+          Icons.person,
+          "Data Diri",
+          onTap: () {
+            Navigator.of(context).push(UserProfilePage.route());
+          },
+        ),
         const SizedBox(height: 30.0),
         profileSibMenuTitle("Lainnya"),
         const SizedBox(height: 18.0),
-        profileSubMenuContainer(Icons.help, "Bantuan"),
+        profileSubMenuContainer(
+          Icons.help,
+          "Bantuan",
+          onTap: () {
+            Navigator.of(context).push(HelpPages.route());
+          },
+        ),
         const SizedBox(height: 18.0),
         profileSubMenuContainer(Icons.security_outlined, "Tentang"),
         const SizedBox(height: 50.0),
@@ -91,6 +110,7 @@ class _ProfileViewState extends State<ProfileView> {
           child: DefaultButton(
             text: "Keluar",
             onPressed: () {
+              context.read<LoginCubit>().logout();
               Navigator.of(context).pushAndRemoveUntil(
                 OnboardPage.route(),
                 (route) => false,

@@ -1,6 +1,8 @@
 import 'package:bank_sampah/constant/app_colors.dart';
 import 'package:bank_sampah/constant/app_text.dart';
+import 'package:bank_sampah/feature/penjualan/logic/cubit/penjualan_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PenjualanBanner extends StatefulWidget {
   const PenjualanBanner(this.isFromDashboard, {Key? key}) : super(key: key);
@@ -123,7 +125,13 @@ class _PenjualanBannerState extends State<PenjualanBanner> {
                 : backButton(),
             titleBanner(),
             const Expanded(child: SizedBox()),
-            countTransactionContainer(5),
+            countTransactionContainer(context
+                    .read<PenjualanCubit>()
+                    .state
+                    .bankSampahResponse
+                    ?.bankIncome
+                    .length ??
+                0),
           ],
         );
 

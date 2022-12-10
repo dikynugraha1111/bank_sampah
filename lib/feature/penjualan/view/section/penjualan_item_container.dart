@@ -59,7 +59,7 @@ class PenjualanItemContainer extends StatelessWidget {
         );
 
     Widget transactionAmountText() => Text(
-          "${isDeposit ? "+" : "-"} Rp $transactionAmount",
+          "Rp $transactionAmount",
           textAlign: TextAlign.end,
           style: AppText.text12.copyWith(
             color: isDeposit ? AppColors.greenSheen : AppColors.salmon,

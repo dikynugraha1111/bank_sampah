@@ -1,6 +1,9 @@
 import 'package:bank_sampah/constant/app_colors.dart';
 import 'package:bank_sampah/constant/app_text.dart';
+import 'package:bank_sampah/feature/login/logic/cubit/login_cubit.dart';
+import 'package:bank_sampah/feature/profile/logic/cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileBanner extends StatefulWidget {
   const ProfileBanner(this.isFromDashboard, {Key? key}) : super(key: key);
@@ -39,16 +42,21 @@ class _ProfileBannerState extends State<ProfileBanner> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Diky Nugraha Difiera",
-                    style: AppText.text16.copyWith(
+                    BlocProvider.of<LoginCubit>(context)
+                            .state
+                            .userProfile
+                            ?.user
+                            .username ??
+                        "Unknown",
+                    style: AppText.text18.copyWith(
                       color: AppColors.greenSheen,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 2.0),
                   Text(
-                    "RW 06, Umulharjo",
-                    style: AppText.text10.copyWith(
+                    "RT ${BlocProvider.of<LoginCubit>(context).state.userProfile?.user.rt} / RW 06 Umulharjo",
+                    style: AppText.text12.copyWith(
                       color: AppColors.lightGrey,
                     ),
                   )
@@ -93,7 +101,7 @@ class _ProfileBannerState extends State<ProfileBanner> {
                       ),
                     ),
                     Text(
-                      "Rp xxxx",
+                      "Rp ${context.read<ProfileCubit>().state.balance}",
                       style: AppText.text14.copyWith(
                         fontWeight: FontWeight.w600,
                         color: AppColors.greenSheen,
@@ -118,7 +126,7 @@ class _ProfileBannerState extends State<ProfileBanner> {
                       ),
                     ),
                     Text(
-                      " Pt",
+                      "${(double.parse(context.read<ProfileCubit>().state.balance ?? "0") / 500).toStringAsFixed(2)} Pt",
                       style: AppText.text14.copyWith(
                         fontWeight: FontWeight.w600,
                         color: AppColors.greenSheen,

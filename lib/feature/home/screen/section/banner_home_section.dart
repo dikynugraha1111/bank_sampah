@@ -1,8 +1,10 @@
 import 'package:bank_sampah/constant/app_colors.dart';
 import 'package:bank_sampah/constant/app_text.dart';
 import 'package:bank_sampah/feature/home/screen/section/banner_slider.dart';
+import 'package:bank_sampah/feature/login/logic/cubit/login_cubit.dart';
 import 'package:bank_sampah/feature/profile/view/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BannerHomeSection extends StatefulWidget {
   const BannerHomeSection({Key? key}) : super(key: key);
@@ -55,7 +57,12 @@ class _BannerHomeSectionState extends State<BannerHomeSection> {
                     ),
                   ),
                   Text(
-                    "Diky Nugraha Difiera",
+                    BlocProvider.of<LoginCubit>(context)
+                            .state
+                            .userProfile
+                            ?.user
+                            .username ??
+                        "Unknown",
                     style: AppText.text12.copyWith(
                       color: AppColors.greenSheen,
                       fontWeight: FontWeight.bold,
