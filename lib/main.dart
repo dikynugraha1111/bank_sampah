@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: Injection.providerList,
       child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: SplashScreenPage(),
       ),
     );
